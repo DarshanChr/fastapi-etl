@@ -47,18 +47,18 @@ jobs:
 
       - name: Clone Helm Repository
         run: |
-          git clone https://${{ secrets.HELM_REPO_USERNAME }}:${{ secrets.HELM_REPO_TOKEN }}@github.com/DarshanChr/fast-api-helm.git
-          cd fast-api-helm
+          git clone https://${{ secrets.HELM_REPO_USERNAME }}:${{ secrets.HELM_REPO_TOKEN }}@github.com/DarshanChr/helm-charts.git
+          cd helm-charts
           git checkout develop
 
       - name: Update Helm values.yaml
         run: |
-          cd fast-api-helm
+          cd helm-charts
           sed -i "s/tag:.*/tag: ${IMAGE_TAG}/" values.yaml
 
       - name: Commit and Push Helm Changes
         run: |
-          cd fast-api-helm
+          cd helm-charts
 
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
