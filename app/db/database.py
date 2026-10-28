@@ -4,13 +4,13 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-DATABASE_URL = "postgresql+psycopg2://postgres:admin@localhost:5432/testdb"
+DATABASE_URL = "postgresql+psycopg2://admin:admin@postgress:5432/etldb"
 
 engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(
-    autocommit = False,
-    autoflush=False,
+    autocommit=False,
+    autoflush=False
     bind=engine
 )
 
