@@ -53,12 +53,12 @@ jobs:
 
       - name: Update Helm values.yaml
         run: |
-          cd helm-charts
+          cd helm-charts/charts/fast-api-etl
           sed -i "s/tag:.*/tag: ${IMAGE_TAG}/" values.yaml
 
       - name: Commit and Push Helm Changes
         run: |
-          cd helm-charts
+          cd helm-charts/charts/fast-api-etl
 
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
