@@ -1,17 +1,20 @@
+FROM maven:3.9-eclipse-temurin-17 AS java-base
 FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install Java and curl
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        openjdk-17-jre-headless \
-        curl && \
-    rm -rf /var/lib/apt/lists/*
+# Copy Java 17 runtime from the Temurin image
 
-# Configure Java
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+COPY --from=java-base /opt/java/openjdk /opt/java/openjdk
+
+ENV JAVA_HOME=/opt/java/openjdk
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
+# Install Java and curl
+RUN apt-get update &&  \
+apt-get install -y --no-install-recommends curl && \
+rm -rf /var/lib/apt/lists/*
+
 
 # Download PostgreSQL JDBC driver into the image
 RUN mkdir -p /opt/spark/jars && \
