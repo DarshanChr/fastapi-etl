@@ -5,7 +5,7 @@ WORKDIR /app
 # Install Java and curl
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        openjdk-21-jre-headless \
+        openjdk-17-jre-headless \
         curl && \
     rm -rf /var/lib/apt/lists/*
 
