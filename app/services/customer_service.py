@@ -16,7 +16,7 @@ def get_customers(db: Session):
             text("""
                 SELECT customer_id, customer_name, email,
                 age, city, salary
-                FROM customers_source
+                FROM customer_source
                 ORDER BY customer_id
             """)    
         )
